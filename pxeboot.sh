@@ -1,3 +1,6 @@
+#! /bin/bash
+# this script is only tested on Centos 7 
+
 hostipaddr=192.168.2.215
 n_server1=192.168.2.2
 n_server2=192.168.2.3
@@ -109,3 +112,5 @@ menu title Homelab PXE Menu
 label Install CentOS 7 Server
   kernel /networkboot/CentOS7/vmlinuz
   append initrd=/networkboot/CentOS7/initrd.img inst.repo=ftp://$hostipaddr/pub/pxe/CentOS7 ks=ftp://$hostipaddr/pub/pxe/centos7-ks.cfg" > /var/lib/tftpboot/pxelinux.cfg/default
+  
+ curl ftp://$hostipaddr/pub/pxe/CentOS7/
