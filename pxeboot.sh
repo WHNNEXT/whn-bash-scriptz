@@ -45,7 +45,7 @@ mount /dev/vdb1 /mnt/iso
 sudo cp -prv /mnt/iso/* /var/ftp/pub/pxe/CentOS7/
 sudo umount /mnt/iso
 
-echo '#version=CentOS7
+echo "#version=CentOS7
 # Install OS instead of upgrade
 install
 # System authorisation information
@@ -97,7 +97,7 @@ chrony
 pwpolicy root --minlen=6 --minquality=1 --notstrict --nochanges --notempty
 pwpolicy user --minlen=6 --minquality=1 --notstrict --nochanges --emptyok
 pwpolicy luks --minlen=6 --minquality=1 --notstrict --nochanges --notempty
-%end' > /var/ftp/pub/pxe/centos7-ks.cfg
+%end" > /var/ftp/pub/pxe/centos7-ks.cfg
 
 sudo yum install syslinux -y
 sudo cp -prv /usr/share/syslinux/* /var/lib/tftpboot/
