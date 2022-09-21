@@ -51,11 +51,11 @@ install
 # System authorisation information
 auth --enableshadow --passalgo=sha512
 # Use network installation
-url --url="ftp://$hostipaddr/pub/pxe/CentOS7"
+url --url=\"ftp://$hostipaddr/pub/pxe/CentOS7\"
 # Use graphical install
 graphical
 # Keyboard layouts
-keyboard --vckeymap=gb --xlayouts="gb"
+keyboard --vckeymap=gb --xlayouts=\"gb\"
 # System language
 lang en_GB.UTF-8
 # SELinux configuration
@@ -69,9 +69,9 @@ network  --bootproto=dhcp --device=eth0 --nameserver=$n_server1,$n_server2 --noi
 reboot
 ignoredisk --only-use=vda
 # Root password
-rootpw --iscrypted $1$oXXrVg0h$HvqNufnboglYKP4cV.kH.0
+rootpw --iscrypted \$1\$oXXrVg0h\$HvqNufnboglYKP4cV.kH.0
 # System services
-services --enabled="chronyd"
+services --enabled=\"chronyd\"
 # System timezone
 timezone Europe/London --isUtc
 # System bootloader configuration
@@ -81,17 +81,17 @@ zerombr
 # Partition clearing information
 clearpart --all --initlabel
 # Disk partitioning information
-part /boot --fstype="xfs" --ondisk=vda --size=1024 --label=boot --asprimary
-part pv.01 --fstype="lvmpv" --ondisk=vda --size=15359
+part /boot --fstype=\"xfs\" --ondisk=vda --size=1024 --label=boot --asprimary
+part pv.01 --fstype=\"lvmpv\" --ondisk=vda --size=15359
 volgroup vg_os pv.01
-logvol /tmp  --fstype="xfs" --size=1024 --label="lv_tmp" --name=lv_tmp --vgname=vg_os
-logvol /  --fstype="xfs" --size=14331 --label="lv_root" --name=lv_root --vgname=vg_os
+logvol /tmp  --fstype=\"xfs\" --size=1024 --label=\"lv_tmp\" --name=lv_tmp --vgname=vg_os
+logvol /  --fstype=\"xfs\" --size=14331 --label=\"lv_root\" --name=lv_root --vgname=vg_os
 %packages
 @^minimal
 @core
 chrony
 %end
-%addon com_redhat_kdump --disable --reserve-mb="auto"
+%addon com_redhat_kdump --disable --reserve-mb=\"auto\"
 %end
 %anaconda
 pwpolicy root --minlen=6 --minquality=1 --notstrict --nochanges --notempty
@@ -112,5 +112,5 @@ menu title Homelab PXE Menu
 label Install CentOS 7 Server
   kernel /networkboot/CentOS7/vmlinuz
   append initrd=/networkboot/CentOS7/initrd.img inst.repo=ftp://$hostipaddr/pub/pxe/CentOS7 ks=ftp://$hostipaddr/pub/pxe/centos7-ks.cfg" > /var/lib/tftpboot/pxelinux.cfg/default
-  
- curl ftp://$hostipaddr/pub/pxe/CentOS7/
+ 
+curl ftp://$hostipaddr/pub/pxe/CentOS7/
